@@ -1,0 +1,33 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js install
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  12.9.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EPROTO: protocol error, symlink '../../../parser/bin/babel-parser.js' -> '/var/www/html/node_modules/@babel/core/node_modules/.bin/parser'
+
+npm manifest: 
+  {
+    "devDependencies": {
+      "@symfony/webpack-encore": "^0.28.0"
+    },
+    "scripts": {
+      "dev": "./node_modules/@symfony/webpack-encore/bin/encore.js dev"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
