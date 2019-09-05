@@ -95,5 +95,74 @@ main {
                 }
             }
         }
-    }
+
+        #taille_evenement{
+            height: 231px;
+        }
+
+
+
+#valorisation_des_heures{
+
+
+        .row{
+            padding-left: 2%;
+            padding-right:2%;
+        }
+        #taille_groupes{
+           position:relative;
+           left: 10px;
+            width: 303px;
+        }
+            .groupe{
+                padding: 2px;
+                text-align: center;
+                font-size: 11px;
+            }
+
+        #durée{
+                    height:46px;
+                }
+        }
+
+        #frais_de_deplacement{
+            .row{
+                padding-left: 2%;
+                padding-right:2%;
+            }
+          #bareme{
+              margin-bottom:5%;
+          }
+
+          button{
+            width: 100%; 
+            width: 100%;
+            height: 31px;
+            text-align: center;
+            font-size: 18px;
+          }
+
+        }
+
+        #Totaux{
+            #tailletotaux{
+
+                height:174px;
+
+            .row{
+                padding-left: 2%;
+                padding-right:2%;
+            }
+          }
+        }
 }
+  }
+    .table{
+        margin-left:5% !important; 
+        width:82vw !important;
+    }   
+
+
+      
+
+  
