@@ -1,0 +1,42 @@
+/* ############## Variables ############## */
+
+
+/* ############## Breakpoints ############## */
+//  à utiliser avec un :
+//         @include desktop {
+//             css code;
+//         }
+//         @include tablet {
+//             css code;
+//         }
+
+@mixin desktop {
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        @content;
+    }
+}
+
+@mixin landscapephone {
+    @media screen and (min-width: 576px) and (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media screen and (max-width: 575px) {
+        @content;
+    }
+}
+
+// for all small screens (tablet and phone)
+@mixin smallScreens {
+    @media screen and (max-width: 991px) {
+        @content;
+    }
+}
