@@ -1,92 +1,88 @@
 // veut dire base.scss
-@import 'base';
+@import 'header';
+@import 'modals';
 
-#dashboard {
-    width: 100px;
-    height: 100vh;
-    background-color: blue;  
-    float: left;
-}
 
-main {
-    width: 100%;
-
-    #month_choice {
-        div {
+    main {
+        width: calc(100vw - 300px);
+        padding-top: 130px;
+        float: right;
+    
+        #month_choice {
             div {
-                img {
-                    width: 10px;
-                    height: 18px;
+                div {
+                    img {
+                        width: 10px;
+                        height: 18px;
+                    }
                 }
-                // span {
-                //     font-size: 24px;
-                // }
             }
         }
     }
-}
 
-#section_action {
-    
-    form {
-        .container {
-            .row {
-                div {
-                    div {                        
-                        div.input-group {
-                            position: relative;                        
-                        
-                            label.label_moved_white-bg {
-                                position: absolute;
-                                z-index: 2000;
-                                top: -12px;
-                                left: 25px;
-                                background-color: white;
-                                padding: 0 5px;
-                            }
-                            // display label according to screen size 
-                            label.short_text {
-                                display: none;
-                            }
-                            @include smallScreens {
-                                label.short_text { display: block; }
-                                label.full_text { display: none; }
-                            }
-                            
-                            input.form-control {
-                                &::-webkit-inner-spin-button {
-                                    display: none;
-                                }
-                            }
-                        }
+        #section_action {
             
-                        .row {
-                            div {
-                                position: relative;
+            form {
+                .container {
+                    .row {
+                        div {
+                            div {                        
+                                div.input-group {
+                                    position: relative;                        
+                                
+                                    label.label_moved_white-bg {
+                                        position: absolute;
+                                        z-index: 200;
+                                        top: -12px;
+                                        left: 25px;
+                                        background-color: white;
+                                        padding: 0 5px;
+                                    }
+                                    // display label according to screen size 
+                                    label.short_text {
+                                        display: none;
+                                    }
+                                    @include smallScreens {
+                                        label.short_text { display: block; }
+                                        label.full_text { display: none; }
+                                    }
                                     
-                                span.label_moved {
-                                    position: absolute;
-                                    z-index: 2000;
-                                    top: -12px;
-                                    left: 25px;
-                                    padding: 0 5px;
+                                    input.form-control {
+                                        &::-webkit-inner-spin-button {
+                                            display: none;
+                                        }
+                                    }
                                 }
-                                input.no_border {
-                                    border: none;
-                                    background-color: #c2c2c2c2;
-                                }
-
-                                label {
-                                    color: blue;
-                                }
-                                select {
-                                    border-color: blue;
-                                }
-
+                    
                                 .row {
                                     div {
-                                        background-color: blue;
-                                        color: white;
+                                        position: relative;
+                                            
+                                        span.label_moved {
+                                            position: absolute;
+                                            z-index: 200;
+                                            top: -12px;
+                                            left: 25px;
+                                            padding: 0 5px;
+                                        }
+                                        input.no_border {
+                                            border: none;
+                                            background-color: #c2c2c2c2;
+                                        }
+        
+                                        label {
+                                            color: blue;
+                                        }
+                                        select {
+                                            border-color: blue;
+                                        }
+        
+                                        .row {
+                                            div {
+                                                background-color: blue;
+                                                color: white;
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -95,5 +91,3 @@ main {
                 }
             }
         }
-    }
-}

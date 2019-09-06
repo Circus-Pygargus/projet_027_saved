@@ -4,21 +4,16 @@
 
 
 {% block stylesheets %}
-    <!-- <link rel="stylesheet" href="build/css/action.css"> -->
     <link rel="stylesheet" href="{{ asset('build/css/action.css') }}">
+    <!-- this line keeps the css called in header.html.twig-->
+    {{ parent() }}
 {% endblock %}
 
 
-{% block header %}
-{% endblock %}
-
-{% block dashboard %}
-    <nav id="dashboard"></nav>
-{% endblock %}
 
 
 {% block content %}
-    <main class="container-fluid">
+    <main>
 
         <div class="container-fluid">
             <div id="month_choice" class="container">
@@ -345,13 +340,12 @@
                         </div>
                     </div>
                 </div>
-              </div>
-              
+              </div>              
             </div>
         </div>
-         <div class="col align-self-end">
-         <button type="button" class="btn btn-primary">Enregistrer</button>
-         </div>
+        <div class="col align-self-end">
+            <button type="button" class="btn btn-primary">Enregistrer</button>
+        </div>
     </form>
 </section>
 
@@ -361,7 +355,8 @@
 {#///////////////////////////////////////////////////////////////// #}
 
 
-    <div class="card text-white bg-dark" style="max-width: 18rem;"> <div class="card-header">Récapitulatif du mois</div>
+<div class="card text-white bg-dark" style="max-width: 18rem;"> 
+    <div class="card-header">Récapitulatif du mois</div>
 </div>
 <table class="table table-hover">
     <thead>
@@ -408,7 +403,7 @@
         {% set sommePayement = 0 %}
         {% set sommeDon = 0 %}
 
-            {% for action in actions %}
+        {% for action in actions %}
             {% set sommeOther_cost = sommeOther_cost + action.other_cost %}
             {% set sommeDurée = sommeDurée + action.durée %}
             {% set sommeValorisation = sommeValorisation + action.valorisation %}
@@ -424,7 +419,7 @@
         {#///////////////////////////////////////////////////////////////// #}
         {#//////////////////// Affichage TOTAUX /////////////////////////// #}
         {#///////////////////////////////////////////////////////////////// #}
-            <th scope="row"> Totaux</th>
+        <th scope="row"> Totaux</th>
         <td></td>
         <td></td>
         <td></td>
@@ -436,6 +431,7 @@
         <td>{{sommeDon}}€</td>
     </tr>
 </tbody></table>
+
  </main>
 {% endblock %}
 

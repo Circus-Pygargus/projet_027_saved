@@ -49,7 +49,9 @@ Encore
     //webpack copy plugin    
     .addPlugin(
         new CopyPlugin([
-          { from: './assets/img', to: 'img' }
+          { from: './assets/img', to: 'img' },
+          { from: './assets/css/libs', to: 'css/libs' },
+          { from: './assets/fonts', to: 'fonts' }
         ]),        
     )
 

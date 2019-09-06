@@ -9,7 +9,6 @@
 //         @include tablet {
 //             css code;
 //         }
-
 @mixin desktop {
     @media screen and (min-width: 992px) and (max-width: 1199px) {
         @content;
@@ -38,5 +37,77 @@
 @mixin smallScreens {
     @media screen and (max-width: 991px) {
         @content;
+    }
+}
+
+
+/* ############## Fonts ############## */
+@font-face {
+    font-family: "openb";
+    src: url(/build/fonts/OpenSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: "openl";
+    src: url(/build/fonts/OpenSans-Light.ttf);
+}
+
+@font-face {
+    font-family: "openr";
+    src: url(/build/fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: "opensb";
+    src: url(/build/fonts/OpenSans-Semibold.ttf);
+}
+
+@font-face {
+    font-family: "openeb";
+    src: url(/build/fonts/OpenSans-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: "openi";
+    src: url(/build/fonts/OpenSans-Italic.ttf);
+}
+
+/* ############## Colors ############## */
+body {    
+    --groupe: #45b0e3; /* color bg */
+    --cgroupe:#a6d5ef;  /* color font*/
+    --frais:#ffbb33;
+    --bareme:#365f91;
+}
+
+/* ############## Forms js event ############## */
+.valid {
+    border: 1px solid green;
+}
+
+.unvalid {
+    border: 1px solid red;
+}
+
+small {
+    color: red;
+}
+
+div.password {
+    position: relative;
+    svg {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        height: 18px;
+        width: auto;
+        path {
+            fill: black;
+            fill-opacity: 0.6;
+            &:hover {
+                fill:#13bd24;
+                fill-opacity: 0.8;
+            }
+        }
     }
 }
