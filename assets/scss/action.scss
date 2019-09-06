@@ -15,12 +15,13 @@ main {
         div {
             div {
                 img {
-                    width: 10px;
-                    height: 18px;
+                    width: 47px;
+                    height: 58px;
                 }
-                // span {
-                //     font-size: 24px;
-                // }
+                 span {
+                     position: relative;
+                     top: 6px;
+                 }
             }
         }
     }
@@ -31,6 +32,11 @@ main {
     form {
         .container {
             .row {
+
+                .border_black{
+                    border-color: black;
+                    border-width: 2px;
+                         }
                 div {
                     div {                        
                         div.input-group {
@@ -77,10 +83,10 @@ main {
                                 }
 
                                 label {
-                                    color: blue;
+                                    color: #a6d5ef;
                                 }
                                 select {
-                                    border-color: blue;
+                                    border-color: #a6d5ef;
                                 }
 
                                 .row {
@@ -109,15 +115,22 @@ main {
             padding-left: 2%;
             padding-right:2%;
         }
+
+        #border_valorisation{
+            border-color:#45b0e3  !important;
+        }
+
         #taille_groupes{
            position:relative;
            left: 10px;
             width: 303px;
+           
         }
             .groupe{
                 padding: 2px;
                 text-align: center;
                 font-size: 11px;
+                background-color:#45b0e3 
             }
 
         #durée{
@@ -130,21 +143,33 @@ main {
                 padding-left: 2%;
                 padding-right:2%;
             }
-          #bareme{
-              margin-bottom:5%;
-          }
+         #border_frais_deplacement{
+             border-color:#f80 !important;
+         }
 
           button{
             width: 100%; 
             width: 100%;
-            height: 31px;
+            height: 26px;
             text-align: center;
-            font-size: 18px;
+            font-size: 19px;
+            color:white;
+            background-color:#365f91;
+
+            span{
+                position:relative;
+                bottom:8px;
+            }
+
+          }
+
+          #taille_input{
+              height:42px;
           }
 
           #km{
             color:#F80;
-            font-weight: bold;
+            // font-weight: bold;
           }
 
           #border_km{
@@ -153,11 +178,11 @@ main {
 
           #other{
             color:#F80;
-            font-weight: bold;
+            // font-weight: bold;
           }
 
           #border_other{
-              border-color:#f80;
+              border-color:#f80 !important;
           }
 
         }
@@ -165,22 +190,65 @@ main {
         #Totaux{
             #tailletotaux{
 
-                height:174px;
+                height:176px;
 
             .row{
                 padding-left: 2%;
                 padding-right:2%;
             }
+
+            label{
+                color:black;
+            }
+
           }
+        }
+
+        #btn_enregistrer{
+            background-color:#365f91;
+            font-size: 21px;
+            width: 224px;
+            height: 44px;
+
         }
 }
   }
-    .table{
+
+  #recap_mensuel_titre{
+    font-size: 23px;
+    height: 35px;
+    text-align: center;
+    padding-top: 0px;
+  }
+    #table{
         margin-left:5% !important; 
         width:82vw !important;
+        border-bottom: 2px solid black;
+    #titre_table{
+     border-bottom: 2px solid black;
+     border-top: 2px solid black
+    
+
     }   
+ .titre_table{
+        border-bottom: 2px solid black;
+     }
 
+tbody{
+     td{
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+     }
 
+.separator{
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+    }
+
+    .separator_totaux{
+        border-top: 1px solid black;
+    }
       
-
+}
   

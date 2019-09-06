@@ -23,7 +23,7 @@
         <div class="container-fluid">
             <div id="month_choice" class="container">
                 <div class="row">
-                    <div class="col-4 mx-auto">
+                    <div class="col-4 mx-auto mb-2">
                         <img src="{{ asset('build/img/fleche_gauche.gif') }}" alt="flèche de navigation dirigée vers la gauche" width="612px" height="792px">
                         <span class="h2 font-weight-bold">{{ date.month }}
                             {{ date.year }}</span>
@@ -44,18 +44,18 @@
                                 <div class="bg-dark text-white h2 font-weight-bold rounded-top text-center mb-3">Évènement</div>
                                 <div class="input-group px-3 mb-3">
                                     <label for="date" class="label_moved_white-bg">Date</label>
-                                    <input type="date" name="date_action" class="date_action form-control" placeholder="Sélectionner une date" required>
+                                    <input type="date" name="date_action" class="date_action border_black form-control" placeholder="Sélectionner une date" required>
                                 </div>
                                 <div class="input-group px-3 mb-3">
                                     <label for="nature_action" class="full_text label_moved_white-bg">Nature de l'apport ou de l'objet du déplacement</label>
                                     <label for="nature_action" class="short_text label_moved_white-bg">Description
                                     </label>
-                                    <input type="text" name="nature_action" class="nature_action form-control" placeholder="Ex : Formation" required>
+                                    <input type="text" name="nature_action" class="nature_action border_black form-control" placeholder="Ex : Formation" required>
                                 </div>
                                 <div class="input-group px-3 mb-3">
                                     <label for="km_action" class="label_moved_white-bg">Trajet
                                     </label>
-                                    <input type="text" name="km_action" class="km_action form-control" placeholder="Ex : Dijon-Besançon" required>
+                                    <input type="text" name="km_action" class="km_action border_black form-control" placeholder="Ex : Dijon-Besançon" required>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,8 @@
                         {#///////////////////////////////////////////////////////////////// #}
 
 
-                            <div id="valorisation_des_heures" class="col-lg-6 mb-2"> <div class="d-flex flex-column border border-dark rounded">
+                            <div id="valorisation_des_heures" class="col-lg-6 mb-2"> 
+                            <div class="d-flex flex-column border rounded" id="border_valorisation">
                                 <div class="bg-dark text-white h2 font-weight-bold rounded-top text-center mb-3">Valorisation des heures</div>
                                 <div class="row">
                                     <div class="input-group col-lg-6">
@@ -324,9 +325,10 @@
                         {#////////////////////FRAIS DE DEPLACEMENT///////////////////////// #}
                         {#///////////////////////////////////////////////////////////////// #}
 
-                            <div class="container"> <div class="row">
+                            <div class="container"> 
+                             <div class="row">
                                 <div id="frais_de_deplacement" class="col-lg-6 ">
-                                    <div class="d-flex flex-column border border-dark rounded">
+                                    <div class="d-flex flex-column border  rounded" id="border_frais_deplacement">
                                         <div class="bg-dark text-white h2 font-weight-bold rounded-top text-center mb-3">Frais de déplacement</div>
                                         <div class="row">
                                             <div class="input-group col-lg-6 px-3 mb-3">
@@ -341,12 +343,11 @@
                                         <div class="row mt-2">
                                             <div class="input-group col-lg-6 px-3 mb-3">
                                                 <span class="label_moved " id="bareme">Barême de 0,316 Euros/km</span>
-                                                <button type="button" class="btn btn-primary mt-2">modifier barême
-                                                </button>
+                                                <button type="button" class="btn btn-primary mt-3"><span>Modifier barême</span></button>
                                             </div>
                                             <div class="input-group col-lg-6 px-3 mb-3">
                                                 <span class="label_moved">Frais kilométriques</span>
-                                                <input type="text" name="frais_action" class="form-control no_border" disabled>
+                                                <input type="text" name="frais_action" class="form-control no_border" id="taille_input" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -364,8 +365,8 @@
                                                 <input type="text" name="frais_déplacement_action" class="form-control no_border" disabled>
                                             </div>
                                             <div class="input-group col-lg-6 px-3 mb-3">
-                                                <label for="km_action" class="label_moved_white-bg">Montant à payer</label>
-                                                <input type="number" name="km_action" class="km_action form-control" placeholder="ex : 55" required>
+                                                <label for="payement_action" class="label_moved_white-bg">Montant à payer</label>
+                                                <input type="number" name="payement_action" class=" border_black payement_action form-control" placeholder="ex : 55" required>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -389,7 +390,7 @@
 
             </div>
         </div>
-            <button type="button" class="btn btn-primary offset-7 col-2 mt-5">Enregistrer</button>
+            <button type="button" class="btn btn-primary offset-7 col-2 mt-5" id="btn_enregistrer">Enregistrer</button>
     </form>
 </section>
 
@@ -399,38 +400,38 @@
 {#///////////////////////////////////////////////////////////////// #}
 
 
-    <div class="card text-white bg-dark" style="max-width: 18rem;">
-     <div class="card-header">Récapitulatif du mois</div>
+    <div class="card text-white bg-dark" style="max-width: 22rem;">
+     <div class="card-header" id="recap_mensuel_titre">Récapitulatif du mois</div>
 </div>
 <table class="table table-hover" id="table">
     <thead>
-        <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Nature</th>
-            <th scope="col">Trajet</th>
-            <th scope="col">Kilomètres</th>
-            <th scope="col">Frais</th>
-            <th scope="col">Durée</th>
-            <th scope="col">Valorisation bénévolat</th>
-            <th scope="col">Montant note de frais</th>
-            <th scope="col">Montant à payer</th>
-            <th scope="col">Montant du don</th>
+        <tr id="titre_table">
+            <th scope="col" class="titre_table">Date</th>
+            <th scope="col" class="titre_table">Nature</th>
+            <th scope="col" class="titre_table">Trajet</th>
+            <th scope="col" class="titre_table">Kilomètres</th>
+            <th scope="col" class="titre_table">Frais</th>
+            <th scope="col" class="titre_table">Durée</th>
+            <th scope="col" class="titre_table">Valorisation bénévolat</th>
+            <th scope="col" class="titre_table">Montant note de frais</th>
+            <th scope="col" class="titre_table">Montant à payer</th>
+            <th scope="col" class="titre_table">Montant du don</th>
         </tr>
     </thead>
     <tbody>
         {% for action in actions %}
             <tr>
 
-                <td>{{action.date}}</td>
-                <td>{{action.nature}}</td>
-                <td>{{action.trajet}}</td>
-                <td>{{action.km}}</td>
-                <td>{{action.other_cost}}€</td>
-                <td>{{action.durée}}</td>
-                <td>{{action.valorisation}}€</td>
-                <td>{{action.frais}}€</td>
-                <td>{{action.payement}}€</td>
-                <td>{{action.don}}€</td>
+                <td class="separator">{{action.date}}</td>
+                <td class="separator">{{action.nature}}</td>
+                <td class="separator">{{action.trajet}}</td>
+                <td class="separator">{{action.km}}</td>
+                <td class="separator">{{action.other_cost}}€</td>
+                <td class="separator">{{action.durée}}</td>
+                <td class="separator">{{action.valorisation}}€</td>
+                <td class="separator">{{action.frais}}€</td>
+                <td class="separator">{{action.payement}}€</td>
+                <td class="separator">{{action.don}}€</td>
             </tr>
         {% endfor %}
     </tbody>
@@ -463,18 +464,19 @@
         {#///////////////////////////////////////////////////////////////// #}
         {#//////////////////// Affichage TOTAUX /////////////////////////// #}
         {#///////////////////////////////////////////////////////////////// #}
-            <th scope="row"> Totaux</th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>{{sommeOther_cost}}€</td>
-        <td>{{sommeDurée}}</td>
-        <td>{{sommeValorisation}}€</td>
-        <td>{{ sommeFrais }}€</td>
-        <td>{{sommePayement}}€</td>
-        <td>{{sommeDon}}€</td>
+            <th scope="row" id="totaux"> Totaux</th>
+        <td class="separator_totaux"></td>
+        <td class="separator_totaux"></td>
+        <td class="separator_totaux"></td>
+        <td class="separator_totaux">{{sommeOther_cost}}€</td>
+        <td class="separator_totaux">{{sommeDurée}}</td>
+        <td class="separator_totaux">{{sommeValorisation}}€</td>
+        <td class="separator_totaux">{{ sommeFrais }}€</td>
+        <td class="separator_totaux">{{sommePayement}}€</td>
+        <td class="separator_totaux">{{sommeDon}}€</td>
     </tr>
-</tbody></table>
+</tbody>
+</table>
 </main>
 {% endblock %}
 {% block javascripts %}<!--
