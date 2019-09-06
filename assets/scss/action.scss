@@ -1,87 +1,106 @@
 // veut dire base.scss
+// veut dire base.scss
 @import 'header';
 @import 'modals';
 
 
-    main {
-        width: calc(100vw - 300px);
-        padding-top: 130px;
-        float: right;
-    
-        #month_choice {
+main {
+    width: calc(100vw - 300px);
+    padding-top: 130px;
+    float: right;
+
+    #month_choice {
+        div {
             div {
-                div {
-                    img {
-                        width: 10px;
-                        height: 18px;
-                    }
+                img {
+                    width: 47px;
+                    height: 58px;
+                }
+
+                span {
+                    position: relative;
+                    top: 6px;
                 }
             }
         }
     }
 
-        #section_action {
-            
-            form {
-                .container {
-                    .row {
+    #section_action {
+
+        form {
+            .container {
+                .row {
+
+                    .border_black {
+                        border-color: black;
+                        border-width: 2px;
+                    }
+
+                    div {
                         div {
-                            div {                        
-                                div.input-group {
-                                    position: relative;                        
-                                
-                                    label.label_moved_white-bg {
-                                        position: absolute;
-                                        z-index: 200;
-                                        top: -12px;
-                                        left: 25px;
-                                        background-color: white;
-                                        padding: 0 5px;
-                                    }
-                                    // display label according to screen size 
+                            div.input-group {
+                                position: relative;
+
+                                label.label_moved_white-bg {
+                                    position: absolute;
+                                    z-index: 2000;
+                                    top: -12px;
+                                    left: 25px;
+                                    background-color: white;
+                                    padding: 0 5px;
+                                }
+
+                                // display label according to screen size 
+                                label.short_text {
+                                    display: none;
+                                }
+
+                                @include smallScreens {
                                     label.short_text {
+                                        display: block;
+                                    }
+
+                                    label.full_text {
                                         display: none;
                                     }
-                                    @include smallScreens {
-                                        label.short_text { display: block; }
-                                        label.full_text { display: none; }
-                                    }
-                                    
-                                    input.form-control {
-                                        &::-webkit-inner-spin-button {
-                                            display: none;
-                                        }
+                                }
+
+                                input.form-control {
+                                    &::-webkit-inner-spin-button {
+                                        display: none;
                                     }
                                 }
-                    
-                                .row {
-                                    div {
-                                        position: relative;
-                                            
-                                        span.label_moved {
-                                            position: absolute;
-                                            z-index: 200;
-                                            top: -12px;
-                                            left: 25px;
-                                            padding: 0 5px;
-                                        }
-                                        input.no_border {
-                                            border: none;
-                                            background-color: #c2c2c2c2;
-                                        }
-        
-                                        label {
-                                            color: blue;
-                                        }
-                                        select {
-                                            border-color: blue;
-                                        }
-        
-                                        .row {
-                                            div {
-                                                background-color: blue;
-                                                color: white;
-                                            }
+                            }
+
+                            .row {
+                                div {
+                                    position: relative;
+
+                                    span.label_moved {
+                                        position: absolute;
+                                        z-index: 2000;
+                                        top: -12px;
+                                        left: 25px;
+                                        padding: 0 5px;
+                                    }
+
+                                    input.no_border {
+                                        border: none;
+                                        background-color: #c2c2c2c2;
+                                    }
+
+                                    label {
+                                        color: #a6d5ef;
+                                    }
+
+                                    select {
+                                        border-color: #a6d5ef;
+                                    }
+
+                                    .row {
+                                        div {
+                                            background-color: blue;
+                                            color: white;
                                         }
                                     }
                                 }
@@ -90,4 +109,178 @@
                     }
                 }
             }
+
+            #taille_evenement {
+                height: 231px;
+            }
+
+
+
+            #valorisation_des_heures {
+
+
+                .row {
+                    padding-left: 2%;
+                    padding-right: 2%;
+                }
+
+                #border_valorisation {
+                    border-color: #45b0e3 !important;
+
+
+                    .numéro_explication {
+
+                        font-size: 9px;
+                    }
+                }
+
+                #taille_groupes {
+                    position: relative;
+                    left: 10px;
+                    width: 303px;
+
+                }
+
+                .groupe {
+                    padding: 2px;
+                    text-align: center;
+                    font-size: 11px;
+                    background-color: #45b0e3
+                }
+
+                #durée {
+                    height: 46px;
+                }
+            }
+
+            #frais_de_deplacement {
+                .row {
+                    padding-left: 2%;
+                    padding-right: 2%;
+                }
+
+                #border_frais_deplacement {
+                    border-color: #f80 !important;
+                }
+
+                button {
+                    width: 100%;
+                    width: 100%;
+                    height: 26px;
+                    text-align: center;
+                    font-size: 19px;
+                    color: white;
+                    background-color: #365f91;
+
+                    span {
+                        position: relative;
+                        bottom: 8px;
+                    }
+
+                }
+
+                #taille_input {
+                    height: 42px;
+                }
+
+                #km {
+                    color: #F80;
+                    // font-weight: bold;
+                }
+
+                #border_km {
+                    border-color: #F80;
+                }
+
+                #other {
+                    color: #F80;
+                    // font-weight: bold;
+
+                    span {
+
+                        font-size: 9px;
+                    }
+
+                }
+
+                #border_other {
+                    border-color: #f80 !important;
+                }
+
+            }
+
+            #Totaux {
+                #tailletotaux {
+
+                    height: 176px;
+
+                    .row {
+                        padding-left: 2%;
+                        padding-right: 2%;
+                    }
+
+                    label {
+                        color: black;
+                    }
+
+                }
+            }
+
+            #explication {
+                display: flex;
+                justify-content: space-between;
+                width: 57%;
+                font-size: 13px;
+                margin-left: 21%;
+            }
+
+            #btn_enregistrer {
+                background-color: #365f91;
+                font-size: 21px;
+                width: 224px;
+                height: 44px;
+
+            }
         }
+    }
+
+
+    #recap_mensuel_titre {
+        font-size: 23px;
+        height: 35px;
+        text-align: center;
+        padding-top: 0px;
+    }
+
+    #table {
+        margin-left: 5% !important;
+        width: 82vw !important;
+        border-bottom: 2px solid black;
+
+        #titre_table {
+            border-bottom: 2px solid black;
+            border-top: 2px solid black
+        }
+
+        .titre_table {
+            border-bottom: 2px solid black;
+        }
+
+        tbody {
+            td {
+                border-bottom: 1px solid black;
+                border-top: 1px solid black;
+            }
+
+            .separator {
+                border-bottom: 1px solid black;
+                border-top: 1px solid black;
+            }
+        }
+
+        .separator_totaux {
+            border-top: 1px solid black;
+        }
+
+    }
+}

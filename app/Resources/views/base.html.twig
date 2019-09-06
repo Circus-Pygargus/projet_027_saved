@@ -29,7 +29,7 @@
         {% block stylesheets %}{% endblock %}
     </head>
 
-    <body>
+    <body {% block idbody %}id="base"{% endblock %}>
         {% block header %}
         <header>
             <!-- Navbar -->
