@@ -118,6 +118,12 @@ main {
 
         #border_valorisation{
             border-color:#45b0e3  !important;
+
+
+            .numéro_explication{
+
+            font-size: 9px;
+        } 
         }
 
         #taille_groupes{
@@ -179,6 +185,12 @@ main {
           #other{
             color:#F80;
             // font-weight: bold;
+
+            span{
+
+                font-size: 9px;
+            } 
+
           }
 
           #border_other{
@@ -202,6 +214,14 @@ main {
             }
 
           }
+        }
+
+        #explication{
+            display: flex;
+    justify-content: space-between;
+    width: 57%;
+    font-size: 13px;
+    margin-left: 21%;
         }
 
         #btn_enregistrer{

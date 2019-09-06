@@ -71,7 +71,7 @@
                                 <div class="bg-dark text-white h2 font-weight-bold rounded-top text-center mb-3">Valorisation des heures</div>
                                 <div class="row">
                                     <div class="input-group col-lg-6">
-                                        <label for="time_start_action" class="label_moved_white-bg">Heure de début</label>
+                                        <label for="time_start_action" class="label_moved_white-bg">Heure de début <span class="numéro_explication">1</span></label>
                                         <select type="date" name="time_start_action" class="time_start_action form-control" required>
                                             <option selected>Choisir une heure</option>
                                             <option value="00:00">00:00</option>
@@ -174,7 +174,7 @@
                                         </select>
                                     </div>
                                     <div class="input-group col-lg-6">
-                                        <label for="time_end_action" class="label_moved_white-bg">Heure de fin</label>
+                                        <label for="time_end_action" class="label_moved_white-bg">Heure de fin <span class="numéro_explication">2</span></label>
                                         <select type="date" name="time_end_action" class="time_end_action form-control" required>
                                             <option selected>Choisir une heure</option>
                                             <option value="00:00">00:00</option>
@@ -336,7 +336,7 @@
                                                 <input type="number" name="km_action" class="km_action form-control" id="border_km" placeholder="ex : 55" required>
                                             </div>
                                             <div class="input-group col-lg-6 px-3 mb-3">
-                                                <label for="other_cost_action" class="label_moved_white-bg" id="other">Autres frais</label>
+                                                <label for="other_cost_action" class="label_moved_white-bg" id="other">Autres frais <span>3</span></label>
                                                 <input type="text" name="other_cost_action" class="other_cost_action form-control" id="border_other" placeholder="Ex : 15,00" required>
                                             </div>
                                         </div>
@@ -390,7 +390,12 @@
 
             </div>
         </div>
-            <button type="button" class="btn btn-primary offset-7 col-2 mt-5" id="btn_enregistrer">Enregistrer</button>
+        <div class="row mt-1" id="explication">
+        <p>3 - pièce(s) justificatives(s) à produire - remboursement plafonnés et soumis à validation</p>
+        <p>1-heure de départ,trajet de l'aller inclus</p>
+        <p>2-heure de fin, trajet du retour inclus</p>
+        </div>
+            <button type="button" class="btn btn-primary offset-7 col-2 mt-3" id="btn_enregistrer">Enregistrer</button>
     </form>
 </section>
 
