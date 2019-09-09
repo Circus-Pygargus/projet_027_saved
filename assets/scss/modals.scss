@@ -75,6 +75,10 @@ li.space2{
 }
 .modal-footer {padding:0!important;}
 
+.modal-body {
+    overflow: auto;
+}
+
 .modal-content{
     height: 80vh;
 }
