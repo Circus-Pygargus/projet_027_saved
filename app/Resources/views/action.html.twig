@@ -1,310 +1,578 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Page de saisie pour les bénévoles{% endblock %}
+{% block title %}Page de saisie pour les bénévoles
+{% endblock %}
 
 
 {% block stylesheets %}
-    <!-- <link rel="stylesheet" href="build/css/action.css"> -->
-    <link rel="stylesheet" href="{{ asset('build/css/action.css') }}">
+<link rel="stylesheet" href="{{ asset('build/css/action.css') }}">
+<!-- this line keeps the css called in header.html.twig-->
+{{ parent() }}
 {% endblock %}
 
 
-{% block header %}
-{% endblock %}
-
-{% block dashboard %}
-    <nav id="dashboard"></nav>
-{% endblock %}
-
+{% block idbody %}id="action"{% endblock %}
 
 {% block content %}
-    <main class="container-fluid">
+<main>
 
-        <div class="container-fluid">
-            <div id="month_choice" class="container">
-                <div class="row">
-                    <div class="col-4 mx-auto">
-                        <img src="{{ asset('build/img/fleche_gauche.gif') }}" alt="flèche de navigation dirigée vers la gauche" width="612px" height="792px">
-                        <span class="h2 font-weight-bold">{{ date.month }} {{ date.year }}</span>
-                        <img src="{{ asset('build/img/fleche_droite.gif') }}" alt="flèche de navigation dirigée vers la droite" width="612px" height="792px">
-                    </div>
+    <!-- modals -->
+    {% include('modules/modals.html.twig') %}
+
+    <div class="container-fluid">
+        <div id="month_choice" class="container">
+            <div class="row">
+                <div class="mx-auto mb-2">
+                    <a id="left_arrow">
+                        <img src="{{ asset('build/img/fleche_gauche.gif') }}"
+                            alt="flèche de navigation dirigée vers la gauche" width="612px" height="792px">
+                    </a>
+                    <span class="h2 font-weight-bold">{{ date.month }}
+                        {{ date.year }}</span>
+                    <a id="right_arrow">
+                        <img src="{{ asset('build/img/fleche_droite.gif') }}"
+                           alt="flèche de navigation dirigée vers la droite" width="612px" height="792px">
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <section id="section_action" class="container-fluid">
-            <form action="" method="post">
-                <div class="container">
-                    <div class="row">
-                        <div id="evenement" class="col-lg-6 ">
-                            <div class="d-flex flex-column border border-dark rounded">
-                                <div class="bg-dark text-white h2 font-weight-bold rounded-top text-center mb-3">Évènement</div>
-                                <div class="input-group px-3 mb-3">
-                                    <label for="date" class="label_moved_white-bg">Date</label>
-                                    <input type="date" name="date_action" class="date_action form-control" placeholder="Sélectionner une date" required>
-                                </div>
-                                <div class="input-group px-3 mb-3">
-                                    <label for="nature_action" class="full_text label_moved_white-bg">Nature de l'apport ou de l'objet du déplacement</label>
-                                    <label for="nature_action" class="short_text label_moved_white-bg">Description </label>
-                                    <input type="text" name="nature_action" class="nature_action form-control" placeholder="Ex : Formation" required>
-                                </div>
-                                <div class="input-group px-3 mb-3">
-                                    <label for="km_action" class="label_moved_white-bg">Trajet </label>
-                                    <input type="text" name="km_action" class="km_action form-control" placeholder="Ex : Dijon-Besançon" required>
-                                </div>
+    <section id="section_action" class="container-fluid">
+        <form action="/action/add" method="post">
+            <div class="container">
+                {#///////////////////////////////////////////////////////////////// #}
+                {#////////////////////EVENEMENT//////////////////////////////////// #}
+                {#///////////////////////////////////////////////////////////////// #}
+                <div class="row">
+                    <div id="evenement" class="col-lg-6 mb-3">
+                        <div class="d-flex flex-column border border-dark rounded" id="taille_evenement">
+                            <div class="bg-dark text-white h2 font-weight-bold rounded-top text-center mb-3">Évènement
+                            </div>
+                            <div class="input-group px-3 mb-3">
+                                <label for="date" class="label_moved_white-bg">Date</label>
+                                <input type="date" name="date_action" class="date_action border_black form-control rounded"
+                                    placeholder="Sélectionner une date" required>
+                            </div>
+                            <div class="input-group px-3 mt-2 mb-3">
+                                <label for="nature_action" class="full_text label_moved_white-bg">Nature de l'apport ou
+                                    de l'objet du déplacement</label>
+                                <label for="nature_action" class="short_text label_moved_white-bg">Description
+                                </label>
+                                <input type="text" name="nature_action" class="nature_action border_black form-control rounded"
+                                    placeholder="Ex : Formation" required>
+                            </div>
+                            <div class="input-group px-3 mt-2 mb-4">
+                                <label for="km_action" class="label_moved_white-bg">Trajet
+                                </label>
+                                <input type="text" name="km_action" class="km_action border_black form-control rounded"
+                                    placeholder="Ex : Dijon-Besançon" required>
                             </div>
                         </div>
+                    </div>
 
-                        <div id="valorisation_des_heures" class="col-lg-6">
-                            <div class="d-flex flex-column border border-dark rounded">
-                                <div class="bg-dark text-white h2 font-weight-bold rounded-top text-center mb-3">Valorisation des heures</div>
-                                <div class="row">
-                                    <div class="input-group col-lg-6 px-3 mb-3">
-                                        <label for="time_start_action" class="label_moved_white-bg">Heure de début</label>
-                                        <select type="date" name="time_start_action" class="time_start_action form-control" required>
-                                                <option selected>Choisir une heure</option>
-                                                <option value="00:00">00:00</option>
-                                                <option value="00:15">00:15</option>
-                                                <option value="00:30">00:30</option>
-                                                <option value="00:45">00:45</option>
-                                                <option value="01:00">01:00</option>
-                                                <option value="01:15">01:15</option>
-                                                <option value="01:30">01:30</option>
-                                                <option value="01:45">01:45</option>
-                                                <option value="02:00">02:00</option>
-                                                <option value="02:15">02:15</option>
-                                                <option value="02:30">02:30</option>
-                                                <option value="02:45">02:45</option>
-                                                <option value="03:00">03:00</option>
-                                                <option value="03:15">03:15</option>
-                                                <option value="03:30">03:30</option>
-                                                <option value="03:45">03:45</option>
-                                                <option value="04:00">04:00</option>
-                                                <option value="04:15">04:15</option>
-                                                <option value="04:30">04:30</option>
-                                                <option value="04:45">04:45</option>
-                                                <option value="05:00">05:00</option>
-                                                <option value="05:15">05:15</option>
-                                                <option value="05:30">05:30</option>
-                                                <option value="05:45">05:45</option>
-                                                <option value="06:00">06:00</option>
-                                                <option value="06:15">06:15</option>
-                                                <option value="06:30">06:30</option>
-                                                <option value="06:45">06:45</option>
-                                                <option value="07:00">07:00</option>
-                                                <option value="07:15">07:15</option>
-                                                <option value="07:30">07:30</option>
-                                                <option value="07:45">07:45</option>
-                                                <option value="08:00">08:00</option>
-                                                <option value="08:15">08:15</option>
-                                                <option value="08:30">08:30</option>
-                                                <option value="08:45">08:45</option>
-                                                <option value="09:00">09:00</option>
-                                                <option value="09:15">09:15</option>
-                                                <option value="09:30">09:30</option>
-                                                <option value="09:45">09:45</option>
-                                                <option value="10:00">10:00</option>
-                                                <option value="10:15">10:15</option>
-                                                <option value="10:30">10:30</option>
-                                                <option value="10:45">10:45</option>
-                                                <option value="11:00">11:00</option>
-                                                <option value="11:15">11:15</option>
-                                                <option value="11:30">11:30</option>
-                                                <option value="11:45">11:45</option>
-                                                <option value="12:00">12:00</option>
-                                                <option value="12:15">12:15</option>
-                                                <option value="12:30">12:30</option>
-                                                <option value="12:45">12:45</option>
-                                                <option value="13:00">13:00</option>
-                                                <option value="13:15">13:15</option>
-                                                <option value="13:30">13:30</option>
-                                                <option value="13:45">13:45</option>
-                                                <option value="14:00">14:00</option>
-                                                <option value="14:15">14:15</option>
-                                                <option value="14:30">14:30</option>
-                                                <option value="14:45">14:45</option>
-                                                <option value="15:00">15:00</option>
-                                                <option value="15:15">15:15</option>
-                                                <option value="15:30">15:30</option>
-                                                <option value="15:45">15:45</option>
-                                                <option value="16:00">16:00</option>
-                                                <option value="16:15">16:15</option>
-                                                <option value="16:30">16:30</option>
-                                                <option value="16:45">16:45</option>
-                                                <option value="17:00">17:00</option>
-                                                <option value="17:15">17:15</option>
-                                                <option value="17:30">17:30</option>
-                                                <option value="17:45">17:45</option>
-                                                <option value="18:00">18:00</option>
-                                                <option value="18:15">18:15</option>
-                                                <option value="18:30">18:30</option>
-                                                <option value="18:45">18:45</option>
-                                                <option value="19:00">19:00</option>
-                                                <option value="19:15">19:15</option>
-                                                <option value="19:30">19:30</option>
-                                                <option value="19:45">19:45</option>
-                                                <option value="20:00">20:00</option>
-                                                <option value="20:15">20:15</option>
-                                                <option value="20:30">20:30</option>
-                                                <option value="20:45">20:45</option>
-                                                <option value="21:00">21:00</option>
-                                                <option value="21:15">21:15</option>
-                                                <option value="21:30">21:30</option>
-                                                <option value="21:45">21:45</option>
-                                                <option value="22:00">22:00</option>
-                                                <option value="22:15">22:15</option>
-                                                <option value="22:30">22:30</option>
-                                                <option value="22:45">22:45</option>
-                                                <option value="23:00">23:00</option>
-                                                <option value="23:15">23:15</option>
-                                                <option value="23:30">23:30</option>
-                                                <option value="23:45">23:45</option>
-                                                <option value="24:00">24:00</option>
-                                        </select>
+
+                    {#///////////////////////////////////////////////////////////////// #}
+                    {#////////////////////VALORISATION DES HEURES////////////////////// #}
+                    {#///////////////////////////////////////////////////////////////// #}
+
+
+                    <div id="valorisation_des_heures" class="col-lg-6 mb-3">
+                        <div class="d-flex flex-column border rounded" id="border_valorisation">
+                            <div class="bg-dark text-white h2 font-weight-bold rounded-top text-center mb-3">
+                                Valorisation des heures</div>
+                            <div class="row">
+                                <div class="input-group col-lg-6">
+                                    <label for="time_start_action" class="label_moved_white-bg">Heure de début <span
+                                            class="numéro_explication">1</span></label>
+                                    <select type="date" name="time_start_action" class="time_start_action form-control rounded"
+                                        required>
+                                        <option selected>Choisir une heure</option>
+                                        <option value="00:00">00:00</option>
+                                        <option value="00:15">00:15</option>
+                                        <option value="00:30">00:30</option>
+                                        <option value="00:45">00:45</option>
+                                        <option value="01:00">01:00</option>
+                                        <option value="01:15">01:15</option>
+                                        <option value="01:30">01:30</option>
+                                        <option value="01:45">01:45</option>
+                                        <option value="02:00">02:00</option>
+                                        <option value="02:15">02:15</option>
+                                        <option value="02:30">02:30</option>
+                                        <option value="02:45">02:45</option>
+                                        <option value="03:00">03:00</option>
+                                        <option value="03:15">03:15</option>
+                                        <option value="03:30">03:30</option>
+                                        <option value="03:45">03:45</option>
+                                        <option value="04:00">04:00</option>
+                                        <option value="04:15">04:15</option>
+                                        <option value="04:30">04:30</option>
+                                        <option value="04:45">04:45</option>
+                                        <option value="05:00">05:00</option>
+                                        <option value="05:15">05:15</option>
+                                        <option value="05:30">05:30</option>
+                                        <option value="05:45">05:45</option>
+                                        <option value="06:00">06:00</option>
+                                        <option value="06:15">06:15</option>
+                                        <option value="06:30">06:30</option>
+                                        <option value="06:45">06:45</option>
+                                        <option value="07:00">07:00</option>
+                                        <option value="07:15">07:15</option>
+                                        <option value="07:30">07:30</option>
+                                        <option value="07:45">07:45</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="08:15">08:15</option>
+                                        <option value="08:30">08:30</option>
+                                        <option value="08:45">08:45</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="09:15">09:15</option>
+                                        <option value="09:30">09:30</option>
+                                        <option value="09:45">09:45</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:15">10:15</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="10:45">10:45</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:15">11:15</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="11:45">11:45</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:15">12:15</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="12:45">12:45</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:15">13:15</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="13:45">13:45</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:15">14:15</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="14:45">14:45</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="15:15">15:15</option>
+                                        <option value="15:30">15:30</option>
+                                        <option value="15:45">15:45</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="16:15">16:15</option>
+                                        <option value="16:30">16:30</option>
+                                        <option value="16:45">16:45</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="17:15">17:15</option>
+                                        <option value="17:30">17:30</option>
+                                        <option value="17:45">17:45</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="18:15">18:15</option>
+                                        <option value="18:30">18:30</option>
+                                        <option value="18:45">18:45</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="19:15">19:15</option>
+                                        <option value="19:30">19:30</option>
+                                        <option value="19:45">19:45</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="20:15">20:15</option>
+                                        <option value="20:30">20:30</option>
+                                        <option value="20:45">20:45</option>
+                                        <option value="21:00">21:00</option>
+                                        <option value="21:15">21:15</option>
+                                        <option value="21:30">21:30</option>
+                                        <option value="21:45">21:45</option>
+                                        <option value="22:00">22:00</option>
+                                        <option value="22:15">22:15</option>
+                                        <option value="22:30">22:30</option>
+                                        <option value="22:45">22:45</option>
+                                        <option value="23:00">23:00</option>
+                                        <option value="23:15">23:15</option>
+                                        <option value="23:30">23:30</option>
+                                        <option value="23:45">23:45</option>
+                                        <option value="24:00">24:00</option>
+                                    </select>
+                                </div>
+                                <div class="input-group col-lg-6">
+                                    <label for="time_end_action" class="label_moved_white-bg">Heure de fin <span
+                                            class="numéro_explication">2</span></label>
+                                    <select type="date" name="time_end_action" class="time_end_action form-control rounded"
+                                        required>
+                                        <option selected>Choisir une heure</option>
+                                        <option value="00:00">00:00</option>
+                                        <option value="00:15">00:15</option>
+                                        <option value="00:30">00:30</option>
+                                        <option value="00:45">00:45</option>
+                                        <option value="01:00">01:00</option>
+                                        <option value="01:15">01:15</option>
+                                        <option value="01:30">01:30</option>
+                                        <option value="01:45">01:45</option>
+                                        <option value="02:00">02:00</option>
+                                        <option value="02:15">02:15</option>
+                                        <option value="02:30">02:30</option>
+                                        <option value="02:45">02:45</option>
+                                        <option value="03:00">03:00</option>
+                                        <option value="03:15">03:15</option>
+                                        <option value="03:30">03:30</option>
+                                        <option value="03:45">03:45</option>
+                                        <option value="04:00">04:00</option>
+                                        <option value="04:15">04:15</option>
+                                        <option value="04:30">04:30</option>
+                                        <option value="04:45">04:45</option>
+                                        <option value="05:00">05:00</option>
+                                        <option value="05:15">05:15</option>
+                                        <option value="05:30">05:30</option>
+                                        <option value="05:45">05:45</option>
+                                        <option value="06:00">06:00</option>
+                                        <option value="06:15">06:15</option>
+                                        <option value="06:30">06:30</option>
+                                        <option value="06:45">06:45</option>
+                                        <option value="07:00">07:00</option>
+                                        <option value="07:15">07:15</option>
+                                        <option value="07:30">07:30</option>
+                                        <option value="07:45">07:45</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="08:15">08:15</option>
+                                        <option value="08:30">08:30</option>
+                                        <option value="08:45">08:45</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="09:15">09:15</option>
+                                        <option value="09:30">09:30</option>
+                                        <option value="09:45">09:45</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:15">10:15</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="10:45">10:45</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:15">11:15</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="11:45">11:45</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:15">12:15</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="12:45">12:45</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:15">13:15</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="13:45">13:45</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:15">14:15</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="14:45">14:45</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="15:15">15:15</option>
+                                        <option value="15:30">15:30</option>
+                                        <option value="15:45">15:45</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="16:15">16:15</option>
+                                        <option value="16:30">16:30</option>
+                                        <option value="16:45">16:45</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="17:15">17:15</option>
+                                        <option value="17:30">17:30</option>
+                                        <option value="17:45">17:45</option>
+                                        <option value="18:00">18:00</option>
+                                        <option value="18:15">18:15</option>
+                                        <option value="18:30">18:30</option>
+                                        <option value="18:45">18:45</option>
+                                        <option value="19:00">19:00</option>
+                                        <option value="19:15">19:15</option>
+                                        <option value="19:30">19:30</option>
+                                        <option value="19:45">19:45</option>
+                                        <option value="20:00">20:00</option>
+                                        <option value="20:15">20:15</option>
+                                        <option value="20:30">20:30</option>
+                                        <option value="20:45">20:45</option>
+                                        <option value="21:00">21:00</option>
+                                        <option value="21:15">21:15</option>
+                                        <option value="21:30">21:30</option>
+                                        <option value="21:45">21:45</option>
+                                        <option value="22:00">22:00</option>
+                                        <option value="22:15">22:15</option>
+                                        <option value="22:30">22:30</option>
+                                        <option value="22:45">22:45</option>
+                                        <option value="23:00">23:00</option>
+                                        <option value="23:15">23:15</option>
+                                        <option value="23:30">23:30</option>
+                                        <option value="23:45">23:45</option>
+                                        <option value="24:00">24:00</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="text-center mb-0 mt-0">Convention Collective Nationale du sport</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group col-lg-6 px-3 ">
+                                    <label class="label_moved" id="durée">Durée</label>
+                                    <input type="text" name="duration_action" class="form-control rounded no_border" disabled>
+                                </div>
+                                <!-- <div class="col-lg-6 mb-1 ">
+                                    <div class="row" id="taille_groupes">
+                                        <div class="groupe col-lg-3 mb-2 ml-2">Groupe 1</div>
+                                        <div class="groupe col-lg-3 mb-2 ml-2">Groupe 2</div>
+                                        <div class="groupe col-lg-3 mb-2 ml-2">Groupe 3</div>
+                                        <div class="groupe col-lg-3 mb-2 ml-2">Groupe 4</div>
+                                        <div class="groupe col-lg-3 mb-2 ml-2">Groupe 5</div>
+                                        <div class="groupe col-lg-3 mb-2 ml-2">Groupe 6</div>
                                     </div>
-                                    <div class="input-group col-lg-6 px-3 mb-3">
-                                        <label for="time_end_action" class="label_moved_white-bg">Heure de fin</label>
-                                        <select type="date" name="time_end_action" class="time_end_action form-control" required>
-                                                <option selected>Choisir une heure</option>
-                                                <option value="00:00">00:00</option>
-                                                <option value="00:15">00:15</option>
-                                                <option value="00:30">00:30</option>
-                                                <option value="00:45">00:45</option>
-                                                <option value="01:00">01:00</option>
-                                                <option value="01:15">01:15</option>
-                                                <option value="01:30">01:30</option>
-                                                <option value="01:45">01:45</option>
-                                                <option value="02:00">02:00</option>
-                                                <option value="02:15">02:15</option>
-                                                <option value="02:30">02:30</option>
-                                                <option value="02:45">02:45</option>
-                                                <option value="03:00">03:00</option>
-                                                <option value="03:15">03:15</option>
-                                                <option value="03:30">03:30</option>
-                                                <option value="03:45">03:45</option>
-                                                <option value="04:00">04:00</option>
-                                                <option value="04:15">04:15</option>
-                                                <option value="04:30">04:30</option>
-                                                <option value="04:45">04:45</option>
-                                                <option value="05:00">05:00</option>
-                                                <option value="05:15">05:15</option>
-                                                <option value="05:30">05:30</option>
-                                                <option value="05:45">05:45</option>
-                                                <option value="06:00">06:00</option>
-                                                <option value="06:15">06:15</option>
-                                                <option value="06:30">06:30</option>
-                                                <option value="06:45">06:45</option>
-                                                <option value="07:00">07:00</option>
-                                                <option value="07:15">07:15</option>
-                                                <option value="07:30">07:30</option>
-                                                <option value="07:45">07:45</option>
-                                                <option value="08:00">08:00</option>
-                                                <option value="08:15">08:15</option>
-                                                <option value="08:30">08:30</option>
-                                                <option value="08:45">08:45</option>
-                                                <option value="09:00">09:00</option>
-                                                <option value="09:15">09:15</option>
-                                                <option value="09:30">09:30</option>
-                                                <option value="09:45">09:45</option>
-                                                <option value="10:00">10:00</option>
-                                                <option value="10:15">10:15</option>
-                                                <option value="10:30">10:30</option>
-                                                <option value="10:45">10:45</option>
-                                                <option value="11:00">11:00</option>
-                                                <option value="11:15">11:15</option>
-                                                <option value="11:30">11:30</option>
-                                                <option value="11:45">11:45</option>
-                                                <option value="12:00">12:00</option>
-                                                <option value="12:15">12:15</option>
-                                                <option value="12:30">12:30</option>
-                                                <option value="12:45">12:45</option>
-                                                <option value="13:00">13:00</option>
-                                                <option value="13:15">13:15</option>
-                                                <option value="13:30">13:30</option>
-                                                <option value="13:45">13:45</option>
-                                                <option value="14:00">14:00</option>
-                                                <option value="14:15">14:15</option>
-                                                <option value="14:30">14:30</option>
-                                                <option value="14:45">14:45</option>
-                                                <option value="15:00">15:00</option>
-                                                <option value="15:15">15:15</option>
-                                                <option value="15:30">15:30</option>
-                                                <option value="15:45">15:45</option>
-                                                <option value="16:00">16:00</option>
-                                                <option value="16:15">16:15</option>
-                                                <option value="16:30">16:30</option>
-                                                <option value="16:45">16:45</option>
-                                                <option value="17:00">17:00</option>
-                                                <option value="17:15">17:15</option>
-                                                <option value="17:30">17:30</option>
-                                                <option value="17:45">17:45</option>
-                                                <option value="18:00">18:00</option>
-                                                <option value="18:15">18:15</option>
-                                                <option value="18:30">18:30</option>
-                                                <option value="18:45">18:45</option>
-                                                <option value="19:00">19:00</option>
-                                                <option value="19:15">19:15</option>
-                                                <option value="19:30">19:30</option>
-                                                <option value="19:45">19:45</option>
-                                                <option value="20:00">20:00</option>
-                                                <option value="20:15">20:15</option>
-                                                <option value="20:30">20:30</option>
-                                                <option value="20:45">20:45</option>
-                                                <option value="21:00">21:00</option>
-                                                <option value="21:15">21:15</option>
-                                                <option value="21:30">21:30</option>
-                                                <option value="21:45">21:45</option>
-                                                <option value="22:00">22:00</option>
-                                                <option value="22:15">22:15</option>
-                                                <option value="22:30">22:30</option>
-                                                <option value="22:45">22:45</option>
-                                                <option value="23:00">23:00</option>
-                                                <option value="23:15">23:15</option>
-                                                <option value="23:30">23:30</option>
-                                                <option value="23:45">23:45</option>
-                                                <option value="24:00">24:00</option>
-                                        </select>
+                                </div> -->
+                                <!-- <div class="group">
+                                    <div class="group1"> -->
+                                <div class="col-lg-6 mb-1 ">
+                                    <div class="row" id="taille_groupes">
+                                        <button type="button" class="groupe col-lg-3 mb-2 ml-2 border-0 text-light rounded" data-toggle="modal" data-target="#groupe1">
+                                            <b>Groupe 1</b></button>
+                                        <button type="button" class="groupe col-lg-3 mb-2 ml-2 border-0 text-light rounded" data-toggle="modal" data-target="#groupe2">
+                                            <b>Groupe 2</b></button>
+                                        <button type="button" class="groupe col-lg-3 mb-2 ml-2 border-0 text-light rounded" data-toggle="modal" data-target="#groupe3">
+                                            <b>Groupe 3</b></button>
+                                    <!-- </div> -->
+                                    <!-- <div class="group2"> -->
+                                        <button type="button" class="groupe col-lg-3 mb-2 ml-2 border-0 text-light rounded" data-toggle="modal" data-target="#groupe4">
+                                            <b>Groupe 4</b></button>
+                                        <button type="button" class="groupe col-lg-3 mb-2 ml-2 border-0 text-light rounded" data-toggle="modal" data-target="#groupe5">
+                                            <b>Groupe 5</b></button>
+                                        <button type="button" class="groupe col-lg-3 mb-2 ml-2 border-0 text-light rounded" data-toggle="modal" data-target="#groupe6">
+                                            <b>Groupe 6</b></button>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="row">
+                                <div class="input-group col-lg-6 px-3 mb-3">
+                                    <label for="groupe_classification_action" class="label_moved_white-bg">Groupe de
+                                        classification</label>
+                                    <select type="text" name="groupe_classification_action"
+                                        class="groupe_classification_action form-control rounded" required>
+                                        <option selected>Sélectionner</option>
+                                        <option value="groupe1">groupe 1</option>
+                                        <option value="groupe1">groupe 2</option>
+                                        <option value="groupe1">groupe 3</option>
+                                        <option value="groupe1">groupe 4</option>
+                                        <option value="groupe1">groupe 5</option>
+                                        <option value="groupe1">groupe 6</option>
+                                    </select>
+                                </div>
+                                <div class="input-group col-lg-6 px-3 mb-4">
+                                    <label class="label_moved" id="rate">Taux horaires sélectionné</label>
+                                    <input type="text" name="frais_action" class="form-control rounded no_border" disabled>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    {#///////////////////////////////////////////////////////////////// #}
+                    {#////////////////////FRAIS DE DEPLACEMENT///////////////////////// #}
+                    {#///////////////////////////////////////////////////////////////// #}
+
+                    <div class="container">
+                        <div class="row">
+                            <div id="frais_de_deplacement" class="col-lg-6 mb-3">
+                                <div class="d-flex flex-column border  rounded" id="border_frais_deplacement">
+                                    <div class="bg-dark text-white h2 font-weight-bold rounded-top text-center mb-3">
+                                        Frais de déplacement</div>
+                                    <div class="row">
+                                        <div class="input-group relative col-lg-6 px-3 mb-3">
+                                            <label for="km_action" class="label_moved_white-bg"
+                                                id="km">Kilométrage</label>
+                                            <input type="number" name="km_action" class="km_action form-control rounded"
+                                                id="border_km" placeholder="ex : 55" required>
+                                            <span class="measure_unit">km</span>
+                                        </div>
+                                        <div class="input-group relative col-lg-6 px-3 mb-3">
+                                            <label for="other_cost_action" class="label_moved_white-bg"
+                                                id="other">Autres frais <span>3</span></label>
+                                            <input type="text" name="other_cost_action"
+                                                class="other_cost_action form-control rounded" id="border_other"
+                                                placeholder="Ex : 15,00" required>
+                                                <span class="measure_unit">€</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="input-group col-lg-6 px-3 mb-3">
+                                            <label class="label_moved " id="bareme">Barême de 0,316 Euros/km</label>
+                                            <button type="button" class="btn btn-primary mt-3"><span>Modifier
+                                                    barême</span></button>
+                                        </div>
+                                        <div id="costs_div" class="input-group relative col-lg-6 px-3 mb-3">
+                                            <label id="costs" class="label_moved">Frais kilométriques</label>
+                                            <input type="text" name="frais_action" class="form-control rounded no_border"
+                                                id="taille_input" disabled>
+                                                <span class="measure_unit">€</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p class="text-center">Convention Collective Nationale du sport</p>
+                            </div>
+                            {#///////////////////////////////////////////////////////////////// #}
+                            {#///////////////////////////TOTAUX//////////////////////////////// #}
+                            {#///////////////////////////////////////////////////////////////// #}
+
+                            <div id="Totaux" class="col-lg-6 mb-3">
+                                <div class="d-flex flex-column border border-dark rounded" id="tailletotaux">
+                                    <div class="bg-dark text-white h2 font-weight-bold rounded-top text-center mb-3">
+                                        Totaux</div>
+                                    <div class="row">
+                                        <div class="input-group relative col-lg-6 px-3 mb-3">
+                                            <label class="label_moved">Frais de déplacement</label>
+                                            <input type="text" name="frais_déplacement_action"
+                                                class="form-control rounded no_border" disabled>
+                                            <span class="measure_unit">€</span>
+                                        </div>
+                                        <div class="input-group relative col-lg-6 px-3 mb-3">
+                                            <label for="payement_action" class="label_moved_white-bg">Montant à
+                                                payer</label>
+                                            <input type="number" name="payement_action"
+                                                class=" border_black payement_action form-control rounded" placeholder="ex : 55"
+                                                required>
+                                            <span class="measure_unit">€</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-group col-lg-6 px-3 mb-3">
-                                        <span class="label_moved">Durée</span>
-                                        <input type="text" name="duration_action" class="form-control no_border" disabled>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="row">
-                                            <div class="col-lg-4">Groupe 1</div>
-                                            <div class="col-lg-4">Groupe 2</div>
-                                            <div class="col-lg-4">Groupe 3</div>
-                                            <div class="col-lg-4">Groupe 4</div>
-                                            <div class="col-lg-4">Groupe 5</div>
-                                            <div class="col-lg-4">Groupe 6</div>
+                                    <div class="row">
+                                        <div id="valorisation_div" class="input-group relative col-lg-6 px-3 mb-3">
+                                            <label class="label_moved">Valorisation du bénévolat</label>
+                                            <input type="text" name="valorisation_action" class="form-control rounded no_border"
+                                                disabled>
+                                            <span class="measure_unit">€</span>
+                                        </div>
+                                        <div id="don_action_div" class="input-group relative col-lg-6 px-3">
+                                            <label class="label_moved">Montant du don</label>
+                                            <input type="text" name="don_action" class="form-control rounded no_border"
+                                                disabled>
+                                            <span class="measure_unit">€</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
-            </form>
-        </section>
+            </div>
 
-        <section id="recap"></section>
-    </main>
+            </div>
+            </div>
+            <div class="container">
+                <div class="row mt-1" id="explication">
+                    <div class="col-6">
+                        <p>3 - pièce(s) justificatives(s) à produire - remboursement plafonnés et soumis à validation</p>
+                    </div>
+                    <div class="d-flex justify-content-between col-6">
+                        <p class="d-inline-block">1-heure de départ,trajet de l'aller inclus</p>
+                        <p class="d-inline-block">2-heure de fin, trajet du retour inclus</p>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary offset-7 col-2 mt-3" id="btn_enregistrer">Enregistrer</button>
+
+            <!-- hidden fields -->
+            <input type="number" name="duration_action" id="duration_action_input" hidden>
+            <input type="number" step="0.01" name="scale_action" id="scale_action_input" hidden>
+        </form>
+    </section>
+
+
+    {#///////////////////////////////////////////////////////////////// #}
+    {#//////////////////// RECAP DU MOIS ////////////////////////////// #}
+    {#///////////////////////////////////////////////////////////////// #}
+
+
+    <section class="container-fluid">
+        <!-- <div class="card text-white bg-dark" style="max-width: 22rem;"> -->
+            <!-- <div class="card-header" id="recap_mensuel_titre">Récapitulatif du mois</div> -->
+        <!-- </div> -->
+        
+        <div class="bg-dark text-white text-center rounded-top" id="recap_mensuel_titre">Récapitulatif du mois</div>
+
+        <table class="table table-hover" id="table">
+            <thead>
+                <tr id="titre_table">
+                    <th scope="col" class="titre_table">Date</th>
+                    <th scope="col" class="titre_table">Nature</th>
+                    <th scope="col" class="titre_table">Trajet</th>
+                    <th scope="col" class="titre_table">Kilomètres</th>
+                    <th scope="col" class="titre_table">Frais</th>
+                    <th scope="col" class="titre_table">Durée</th>
+                    <th scope="col" class="titre_table">Valorisation bénévolat</th>
+                    <th scope="col" class="titre_table">Montant note de frais</th>
+                    <th scope="col" class="titre_table">Montant à payer</th>
+                    <th scope="col" class="titre_table">Montant du don</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if actions is defined %}
+                    {% for action in actions %}
+                    <!-- storing the db row id of action table, we'll need iuser wants to update datas -->
+                    <tr data-id="{{ action.id }}">
+
+                        <td class="separator">{{action.date}}</td>
+                        <td class="separator">{{action.nature}}</td>
+                        <td class="separator">{{action.trajet}}</td>
+                        <td class="separator">{{action.km}}</td>
+                        <td class="separator">{{action.other_cost}}€</td>
+                        <td class="separator">{{action.durée}}</td>
+                        <td class="separator">{{action.valorisation}}€</td>
+                        <td class="separator">{{action.frais}}€</td>
+                        <td class="separator">{{action.payement}}€</td>
+                        <td class="separator">{{action.don}}€</td>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+            <tbody>
+
+                {#///////////////////////////////////////////////////////////////// #}
+                {#//////////////////// Calcul TOTAUX ////////////////////////////// #}
+                {#///////////////////////////////////////////////////////////////// #}
+
+                {% set sommeOther_cost = 0 %}
+                {% set sommeDurée = 0 %}
+                {% set sommeValorisation = 0 %}
+                {% set sommeFrais = 0 %}
+                {% set sommePayement = 0 %}
+                {% set sommeDon = 0 %}
+
+                {% if actions is defined %}
+                    {% for action in actions %}
+                        {% set sommeOther_cost = sommeOther_cost + action.other_cost %}
+                        {% set sommeDurée = sommeDurée + action.durée %}
+                        {% set sommeValorisation = sommeValorisation + action.valorisation %}
+                        {% set sommeFrais = sommeFrais + action.frais %}
+                        {% set sommePayement = sommePayement + action.payement %}
+                        {% set sommeDon = sommeDon + action.don %}
+                        <tr>
+
+                    {% endfor %}
+
+                {% else %}
+                    <p>Aucune donnée enregistrer ce mois-ci</p>
+                {% endif %}
+
+                    {#///////////////////////////////////////////////////////////////// #}
+                    {#//////////////////// Affichage TOTAUX /////////////////////////// #}
+                    {#///////////////////////////////////////////////////////////////// #}
+                    <th scope="row" id="totaux" class="separator_totaux"> Totaux</th>
+                    <td class="separator_totaux"></td>
+                    <td class="separator_totaux"></td>
+                    <td class="separator_totaux"></td>
+                    <td class="separator_totaux">{{sommeOther_cost}}€</td>
+                    <td class="separator_totaux">{{sommeDurée}}</td>
+                    <td class="separator_totaux">{{sommeValorisation}}€</td>
+                    <td class="separator_totaux">{{ sommeFrais }}€</td>
+                    <td class="separator_totaux">{{sommePayement}}€</td>
+                    <td class="separator_totaux">{{sommeDon}}€</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
 {% endblock %}
-
 
 {% block javascripts %}
 <!--
-    TODO:
-        _ remplir l'attribut action de la balise form (vers ligne 34)
-        _ ajouter une icône date picker dans l'input date ?
-            une flèche cliquable est déjà affichée sur chrome et opéra  pour affichage du calendar !
-            sur firefox, cliquer sur l'input ouvre un calendrier
+        TODO:
+            _ remplir l'attribut action de la balise form (vers ligne 34).
+            _ ajouter une icône date picker dans l'input date ?
+            -TEST           
+                une flèche cliquable est déjà affichée sur chrome et opéra  pour affichage du calendar !
+                sur firefox, cliquer sur l'input ouvre un calendrier
 -->
 {% endblock %}

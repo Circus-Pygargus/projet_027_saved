@@ -16,17 +16,92 @@
 
         <title>{% block title %}Welcome!{% endblock %}</title>
 
+        <link rel="icon" href="{{ asset('build/img/favicon.png') }}">
+
+        <!-- FontAwesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('build/css/libs/mdb.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/libs/bootstrap.min.css') }}">
         <!-- custom css -->
-        <!-- <link rel="stylesheet" href="build/css/base.css"> -->
+        <!-- base.scss is include in header.scss and called by final html file-->
         {% block stylesheets %}{% endblock %}
     </head>
 
-    <body>
-        {% block header %}{% endblock %}
+    <body {% block idbody %}id="base"{% endblock %}>
+        {% block header %}
+        <header>
+            <!-- Navbar -->
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+                <div class="container-fluid">        
+                    <!-- Brand -->
+                    <a class="navbar-brand waves-effect" href="" target="_blank">
+                        <strong class="blue-text"></strong>
+                    </a>                    
+                    <!-- Collapse -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>        
+                    <!-- Links -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">        
+                        <!-- Left -->
+                        <ul class="navbar-nav mr-auto">
+                            <a >
+                                <img class="img-fluid" src="/build/img/logoolymp.png" alt="logo du comité olympique" height="80" width="89">
+                            </a>
+                            <a>
+                                <img class="img-fluid" src="/build/img/saved.png" alt="logo du comité olympique" height="200" width="132">
+                            </a>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect" href="">
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect" href="" target="_blank"></a>
+                            </li>    
+                        </ul>
+                        <ul class="navbar-nav nav-flex-icons">
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect" href="" target="_blank">Mom compte </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect" target="_blank">Bonjour {{ user.username }} </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link waves-effect" href="" target="_blank"> Déconnexion</a>
+                            </li>
+                            <li class="nav-item">
+                                <div id="content">
+        
+        
+                                </div>    
+                            </li>        
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar -->        
+            <!-- Sidebar -->
+            <div class="sidebar-fixed position-fixed">        
+                <div id="logo">
+                    <img class="img-fluid"  src="/build/img/logo_asso/asso-bbc.jpg" alt="logo de l'association" height="120" width="136">
+                </div>
+                <div class="list-group list-group-flush">                           
+                    <a href="" class="list-group-item list-group-item-action waves-effect">
+                        Saisie</a>
+                    <a href="" class="list-group-item list-group-item-action waves-effect">
+                         Récap annuel</a>
+                    <a href="" class="list-group-item list-group-item-action waves-effect">
+                        FAQ</a>
+                    <a href="" class="list-group-item list-group-item-action waves-effect">
+                        Contacter l'administrateur</a>
+                </div>        
+            </div>
+        </header>
+        {% endblock %}
 
-        {% block dashboard %}{% endblock %}
 
         {% block content %}{% endblock %}
 
