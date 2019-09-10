@@ -500,7 +500,8 @@
             <tbody>
                 {% if actions is defined %}
                     {% for action in actions %}
-                    <tr>
+                    <!-- storing the db row id of action table, we'll need iuser wants to update datas -->
+                    <tr data-id="{{ action.id }}">
 
                         <td class="separator">{{action.date}}</td>
                         <td class="separator">{{action.nature}}</td>
