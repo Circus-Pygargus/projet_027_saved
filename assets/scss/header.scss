@@ -5,13 +5,13 @@
 }
 
 .sidebar-fixed {
-    top: 16vh;
-height: 83vh;
-width: 240px;
--webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-z-index: 1050;
-background-color: #fff;
+    top: 96px;
+    height: calc(100vh - 96px);
+    width: 240px;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    z-index: 1031;
+    background-color: #fff;
 }
 .sidebar-fixed .list-group .active {
 -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -22,6 +22,10 @@ border-radius: 5px; }
 padding: 2.5rem; }
 .sidebar-fixed .logo-wrapper img {
   max-height: 50px; }
+
+.navbar {
+    height: 95px;
+}
 
 @media (min-width: 1200px) {
 .navbar,

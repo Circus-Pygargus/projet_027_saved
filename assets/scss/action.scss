@@ -334,3 +334,14 @@ main {
 
     }
 }
+div.relative {
+    position: relative;
+}
+
+span.measure_unit {
+    position: absolute;
+    z-index: 10;
+    top: 7px;
+    right: 35px;
+    color: black;
+}
