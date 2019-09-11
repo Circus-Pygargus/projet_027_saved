@@ -62,6 +62,7 @@ class ActionController extends Controller
         $taux_km = 0.316;
         $user['username'] = 'Mario';
         $user['id'] = '1';
+        $asso['id'] = '1';
 
 
         // pour la date récup la date en chiffre
