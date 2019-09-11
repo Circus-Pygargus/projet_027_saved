@@ -14,10 +14,59 @@ class ActionController extends Controller
      */
     public function action (Request $request) 
     {
-        $user['username'] = 'Mario';
+        // today's date
         $date = [];
-        $date['month'] = 'Septembre';
-        $date['year'] = '2019';
+        $date['month'] = date('F');
+        $date['year'] = date('Y');
+        switch ($date['month']) {
+            case 'January':
+                $date['month'] = 'Janvier';
+                break;
+            case 'February':
+                $date['month'] = 'Février';
+                break;
+            case 'March':
+                $date['month'] = 'Mars';
+                break;
+            case 'April':
+                $date['month'] = 'Avril';
+                break;
+            case 'May':
+                $date['month'] = 'Mai';
+                break;
+            case 'June':
+                $date['month'] = 'Juin';
+                break;
+            case 'July':
+                $date['month'] = 'Juillet';
+                break;
+            case 'August':
+                $date['month'] = 'Août';
+                break;
+            case 'September':
+                $date['month'] = 'Septembre';
+                break;
+            case 'October':
+                $date['month'] = 'Octobre';
+                break;
+            case 'November':
+                $date['month'] = 'Novembre';
+                break;
+            case 'December':
+                $date['month'] = 'Décembre';
+                break;
+        }
+
+
+        // A RECUPERER EN BDD
+        $taux_km = 0.316;
+        $user['username'] = 'Mario';
+        $user['id'] = '1';
+        $asso['id'] = '1';
+
+
+        // pour la date récup la date en chiffre
+
         $actions[0] = [
             'id' => '1',
             'date'=>'15/05/2019',
@@ -47,6 +96,7 @@ class ActionController extends Controller
 
         return $this->render('action.html.twig',
             [
+                'taux_km' => $taux_km,
                 'user' => $user,
                 'date' => $date,
                 'actions' => $actions
