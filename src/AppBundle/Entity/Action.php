@@ -133,6 +133,13 @@ class Action
      */
     private $durationAction;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="assoId", type="integer", nullable=true)
+     */
+    private $assoId;
+
 
     /**
      * Get id
@@ -526,6 +533,30 @@ class Action
     public function getDurationAction()
     {
         return $this->durationAction;
+    }
+
+    /**
+     * Set assoId
+     * 
+     * @param integer $assoId
+     * 
+     * @return Action
+     */
+    public function setAssoId($assoId)
+    {
+        $this->assoId = $assoId;
+
+        return $this;
+    }
+
+    /**
+     * Get assoId
+     * 
+     * @return int
+     */
+    public function GetAssoId()
+    {
+        return $this->assoId;
     }
 }
 
