@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use AppBundle\Entity\Action;
+use Doctrine\ORM\query;
 
 class ActionController extends Controller 
 {
@@ -67,39 +69,54 @@ class ActionController extends Controller
 
         // pour la date récup la date en chiffre
 
-        $actions[0] = [
-            'id' => '1',
-            'date'=>'15/05/2019',
-            'nature'=>'Formation',
-            'trajet'=>'Dijon-Besançon',
-            'km'=>'200km',
-            'other_cost'=>'20.00',
-            'durée'=>'04h30',
-            'valorisation'=>'85.18',
-            'frais'=>'83.20',
-            'payement'=>'80.00',
-            'don'=>'3.20'
-        ];
-        $actions[1] = [
-            'id' => '2',
-            'date'=>'22/05/2019',
-            'nature'=>'Réunion externe',
-            'trajet'=>'Dole-Dijon',
-            'km'=>'100km',
-            'other_cost'=>'20.00',
-            'durée'=>'01h45',
-            'valorisation'=>'33.13',
-            'frais'=>'51.30',
-            'payement'=>'5.00',
-            'don'=>'3.20'
-        ];
+        // $actions[0] = [
+        //     'id' => '1',
+        //     'date'=>'15/05/2019',
+        //     'nature'=>'Formation',
+        //     'trajet'=>'Dijon-Besançon',
+        //     'km'=>'200km',
+        //     'other_cost'=>'20.00',
+        //     'durée'=>'04h30',
+        //     'valorisation'=>'85.18',
+        //     'frais'=>'83.20',
+        //     'payement'=>'80.00',
+        //     'don'=>'3.20'
+        // ];
+        // $actions[1] = [
+        //     'id' => '2',
+        //     'date'=>'22/05/2019',
+        //     'nature'=>'Réunion externe',
+        //     'trajet'=>'Dole-Dijon',
+        //     'km'=>'100km',
+        //     'other_cost'=>'20.00',
+        //     'durée'=>'01h45',
+        //     'valorisation'=>'33.13',
+        //     'frais'=>'51.30',
+        //     'payement'=>'5.00',
+        //     'don'=>'3.20'
+        // ];
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $action = $entityManager->getRepository(Action::class)->findBy(
+            [
+                'userId' => $user['id'],
+                'assoId' => $asso['id']
+            ]
+            );
+
+        if (!$action) {
+            throw $this->createdNotFoundException(
+                'no action found'
+            );
+        }
 
         return $this->render('action.html.twig',
             [
-                'taux_km' => $taux_km,
                 'user' => $user,
+                'asso' => $asso,
+                'taux_km' => $taux_km,
                 'date' => $date,
-                'actions' => $actions
+                'actions' => $action
             ]
         );
     }

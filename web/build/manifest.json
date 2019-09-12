@@ -1,4 +1,5 @@
 {
+  "build/base.js": "/build/base.js",
   "build/css/action.css": "/build/css/action.css",
   "build/runtime.js": "/build/runtime.js",
   "build/css/libs/bootstrap.min.css": "/build/css/libs/bootstrap.min.css",

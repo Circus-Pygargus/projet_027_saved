@@ -1,5 +1,11 @@
 {
   "entrypoints": {
+    "base": {
+      "js": [
+        "/build/runtime.js",
+        "/build/base.js"
+      ]
+    },
     "css/action": {
       "js": [
         "/build/runtime.js"

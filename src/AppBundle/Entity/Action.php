@@ -136,7 +136,7 @@ class Action
     /**
      * @var int
      *
-     * @ORM\Column(name="assoId", type="integer", nullable=true)
+     * @ORM\Column(name="asso_id", type="integer", nullable=true)
      */
     private $assoId;
 

@@ -24,7 +24,7 @@ Encore
     .addStyleEntry('css/action', './assets/scss/action.scss')
 
 
-    // .addEntry('app', './assets/js/app.js')
+    .addEntry('base', './assets/js/base.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
